@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScrRec.online - Free HD Screen Recorder | No Watermark</title>
+    <meta name="description" content="Record your screen in HD with ScrRec.online. Free, browser-based screen recorder with no watermark. One-click screen capture with webcam and audio support.">
+    <meta name="keywords" content="free screen recorder, HD screen capture, no watermark, browser-based recording, screen recording software, webcam recorder">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="ScrRec.online - Free HD Screen Recorder | No Watermark">
+    <meta property="og:description" content="Record your screen in HD with ScrRec.online. Free, browser-based screen recorder with no watermark. One-click screen capture with audio support.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://scrrec.online">
+    <meta property="og:image" content="https://scrrec.online/images/og-image.jpg">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="screen-recorder">
+            <div class="header">
+                <!-- Logo -->
+                <div class="logo-container">
+                    <img src="images/logo.jpeg" alt="Screen Recorder Logo" class="app-logo">
+                </div>
+                <h1>Screen Recorder</h1>
+                <p class="subtitle">Record your screen directly in your browser</p>
+            </div>
+            
+            <!-- Advertisement banner spot -->
+            <div class="ad-container" id="headerAd">
+                <!-- AdSense code will go here -->
+                <div class="ad-placeholder">Advertisement</div>
+            </div>
+            
+            <div class="preview-container">
+                <video id="preview" autoplay muted></video>
+                <div id="placeholder">
+                    <i class="fas fa-desktop"></i>
+                    <p>Your recording will appear here</p>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <!-- Recording mode selector -->
+                <div class="mode-selector">
+                    <div class="mode-item">
+                        <input type="radio" id="screenMode" name="recordMode" value="screen" checked>
+                        <label for="screenMode">Screen</label>
+                    </div>
+                    <div class="mode-item">
+                        <input type="radio" id="webcamMode" name="recordMode" value="webcam">
+                        <label for="webcamMode">Webcam</label>
+                    </div>
+                    <div class="mode-item">
+                        <input type="radio" id="pipMode" name="recordMode" value="pip">
+                        <label for="pipMode">Screen + Camera</label>
+                    </div>
+                </div>
+
+                <!-- Audio controls -->
+                <div class="audio-controls">
+                    <div class="control-item">
+                        <input type="checkbox" id="micAudio" checked>
+                        <label for="micAudio">Microphone</label>
+                    </div>
+                    <div class="control-item">
+                        <input type="checkbox" id="systemAudio" checked>
+                        <label for="systemAudio">System Audio</label>
+                    </div>
+                </div>
+                
+                <!-- Quality controls -->
+                <div class="quality-controls">
+                    <div class="quality-item">
+                        <label for="videoQuality">Resolution:</label>
+                        <select id="videoQuality" class="quality-dropdown">
+                            <option value="720p">HD (720p)</option>
+                            <option value="1080p" selected>Full HD (1080p)</option>
+                            <option value="2k">2K (1440p)</option>
+                            <option value="4k">4K (2160p)</option>
+                        </select>
+                    </div>
+                    <div class="quality-item">
+                        <label for="frameRate">Frame Rate:</label>
+                        <select id="frameRate" class="quality-dropdown">
+                            <option value="30">30 FPS</option>
+                            <option value="60" selected>60 FPS</option>
+                        </select>
+                    </div>
+                    <div class="quality-item">
+                        <label for="bitrate">Quality:</label>
+                        <select id="bitrate" class="quality-dropdown">
+                            <option value="low">Low (3 Mbps)</option>
+                            <option value="medium" selected>Medium (8 Mbps)</option>
+                            <option value="high">High (16 Mbps)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- PiP controls (initially hidden) -->
+                <div id="pipControls" class="pip-controls hidden">
+                    <div class="pip-control-item">
+                        <label for="pipPosition">Camera Position:</label>
+                        <select id="pipPosition" class="control-dropdown">
+                            <option value="top-right">Top Right</option>
+                            <option value="top-left">Top Left</option>
+                            <option value="bottom-right" selected>Bottom Right</option>
+                            <option value="bottom-left">Bottom Left</option>
+                        </select>
+                    </div>
+                    <div class="pip-control-item">
+                        <label for="pipSize">Camera Size:</label>
+                        <select id="pipSize" class="control-dropdown">
+                            <option value="small">Small</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+                    <div class="pip-control-item">
+                        <label for="pipShape">Camera Shape:</label>
+                        <select id="pipShape" class="control-dropdown">
+                            <option value="rectangle" selected>Rectangle</option>
+                            <option value="rounded">Rounded</option>
+                            <option value="circle">Circle</option>
+                        </select>
+                    </div>
+                    <div class="pip-control-item">
+                        <label for="pipOpacity">Camera Opacity:</label>
+                        <input type="range" id="pipOpacity" class="slider-control" min="50" max="100" value="100">
+                        <span id="opacityValue">100%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add webcam preview container -->
+            <div id="webcamContainer" class="webcam-container hidden">
+                <video id="webcamVideo" autoplay muted></video>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="startBtn" class="btn primary"><i class="fas fa-record-vinyl"></i> Start Recording</button>
+                <button id="stopBtn" class="btn secondary" disabled><i class="fas fa-stop"></i> Stop Recording</button>
+                <button id="downloadBtn" class="btn" disabled><i class="fas fa-download"></i> Download WebM</button>
+            </div>
+            
+            <div class="status-indicator">
+                <div id="recordingStatus" class="hidden">
+                    <span class="recording-dot"></span> Recording in progress
+                    <span id="recordingTime">00:00</span>
+                </div>
+            </div>
+            
+            <!-- Simplified conversion section -->
+            <div id="conversionTool" class="conversion-tool hidden">
+                <div class="tool-header">
+                    <h3>Want MP4 Format?</h3>
+                    <p>Your recording is ready in WebM format. Convert to MP4 for better compatibility.</p>
+                </div>
+                <div class="converter-cta">
+                    <button id="convertNowBtn" class="btn convert-btn">
+                        <i class="fas fa-sync-alt"></i> Convert to MP4 Now
+                    </button>
+                </div>
+                <div class="converter-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>High Quality Conversion</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Fast Processing</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Free Service</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add a second ad container before the footer -->
+            <div class="ad-container" id="footerAd">
+                <!-- AdSense code will go here -->
+                <div class="ad-placeholder">Advertisement</div>
+            </div>
+        </div>
+        <div class="footer">s"></script>
+            <p>Made with <i class="fas fa-heart"></i> using WebRTC and MediaRecorder API</p>
+        </div>ript src="js/ads.js"></script>
+    </div>
+</html>
+
+
+
+
+
+
+
+
+</html></body>    <script src="js/ads.js"></script>    <script src="js/app.js"></script>    <script src="js/screen-camera.js"></script>    <script src="js/feature-test.js"></script>    <!-- Only include necessary scripts -->
